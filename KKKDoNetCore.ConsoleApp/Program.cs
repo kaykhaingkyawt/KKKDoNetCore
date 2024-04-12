@@ -1,4 +1,5 @@
 ﻿
+using KKKDoNetCore.ConsoleApp;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -6,7 +7,7 @@ Console.WriteLine("Hello, World!");
 
 
 //Connect Database
-SqlConnectionStringBuilder stringBuilder = new SqlConnectionStringBuilder();
+/*SqlConnectionStringBuilder stringBuilder = new SqlConnectionStringBuilder();
 stringBuilder.DataSource = "."; //Server name
 stringBuilder.InitialCatalog = "KKKDoNetCore"; //database name
 stringBuilder.UserID = "sa"; // Server Id
@@ -36,4 +37,23 @@ foreach(DataRow dr in dt.Rows)
     Console.WriteLine("--------------------------------------------");
 }
 
-Console.ReadKey();
+Console.ReadKey();*/
+AdoDoNetExample adoDoNetExample = new AdoDoNetExample();
+
+//adoDoNetExample.Read();
+
+//adoDoNetExample.Create("title", "author", "content");
+
+//adoDoNetExample.Update(10, "title 1", "author 1", "content 1");
+
+//adoDoNetExample.Delete(10);
+
+//adoDoNetExample.Update(9, "title test", "test author","test content");
+
+//adoDoNetExample.Delete(11);
+
+adoDoNetExample.Edit(11);
+adoDoNetExample.Edit(1);
+
+
+Console.ReadLine();
