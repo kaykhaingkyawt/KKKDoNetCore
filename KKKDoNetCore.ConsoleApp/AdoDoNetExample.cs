@@ -14,18 +14,15 @@ namespace KKKDoNetCore.ConsoleApp
     {
         private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
-
             DataSource = ".", //Server name
             InitialCatalog = "KKKDoNetCore",//database name
             UserID = "sa", // Server Id
             Password = "sa@123",// Server password
-
         };
 
         //Read
      public void Read()
         {
-           
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
 
             connection.Open();
@@ -36,7 +33,6 @@ namespace KKKDoNetCore.ConsoleApp
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd); // new qurery call p command write lo ya aung load tar
             DataTable dt = new DataTable();
             sqlDataAdapter.Fill(dt);
-
 
             connection.Close();
             Console.WriteLine("Connection Close.");
@@ -49,9 +45,6 @@ namespace KKKDoNetCore.ConsoleApp
                 Console.WriteLine("Blog Content => " + dr["BlogContent"]);
                 Console.WriteLine("--------------------------------------------");
             }
-
-           
-
         }
 
         //Edit
@@ -84,16 +77,12 @@ namespace KKKDoNetCore.ConsoleApp
             }
 
             DataRow dr = dt.Rows[0];
-            
                 Console.WriteLine("Blog Id => " + dr["BlogId"]);
                 Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
                 Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
                 Console.WriteLine("Blog Content => " + dr["BlogContent"]);
-                Console.WriteLine("--------------------------------------------");
-            
+                Console.WriteLine("--------------------------------------------");  
         }
-
-
         // Create
         public void Create(string title,string author,string content)
         {
@@ -111,12 +100,10 @@ namespace KKKDoNetCore.ConsoleApp
            ,@BlogAuthor
            ,@BlogContent)";
             SqlCommand cmd = new SqlCommand(query, connection);
-
             //Insert Parameter
             cmd.Parameters.AddWithValue("@BlogTitle",title);
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
             cmd.Parameters.AddWithValue("@BlogContent", content);
-
             //Make Execute
             int result= cmd.ExecuteNonQuery();
 
@@ -128,10 +115,8 @@ namespace KKKDoNetCore.ConsoleApp
         }
 
         // Update
-
         public void Update(int id,string title,string author,string content)
         {
-
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
 
             connection.Open();
@@ -143,13 +128,11 @@ namespace KKKDoNetCore.ConsoleApp
       ,[BlogContent] = @BlogContent
  WHERE BlogId =@BlogId";
             SqlCommand cmd = new SqlCommand(query, connection);
-
             //Insert Parameter
             cmd.Parameters.AddWithValue("@BlogId", id);
             cmd.Parameters.AddWithValue("@BlogTitle", title);
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
             cmd.Parameters.AddWithValue("@BlogContent", content);
-
             //Make Execute
             int result = cmd.ExecuteNonQuery();
 
@@ -163,7 +146,6 @@ namespace KKKDoNetCore.ConsoleApp
         //Delete
         public void Delete(int id)
         {
-
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
 
             connection.Open();
@@ -171,13 +153,10 @@ namespace KKKDoNetCore.ConsoleApp
 
             string query = @"delete from Tbl_Blog where BlogId =@BlogId";
             SqlCommand cmd = new SqlCommand(query, connection);
-
             //Insert Parameter
             cmd.Parameters.AddWithValue("@BlogId", id);
-           
             //Make Execute
             int result = cmd.ExecuteNonQuery();
-
             connection.Close();
             Console.WriteLine("Connection Close.");
 
