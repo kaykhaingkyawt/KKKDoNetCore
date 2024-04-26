@@ -66,7 +66,6 @@ namespace KKKDoNetCore.ConsoleApp
             DataTable dt = new DataTable();
             sqlDataAdapter.Fill(dt);
 
-
             connection.Close();
             Console.WriteLine("Connection Close.");
 

@@ -44,10 +44,15 @@ Console.ReadKey();*/
 ////adoDoNetExample.Delete(10);
 ////adoDoNetExample.Update(9, "title test", "test author","test content");
 ////adoDoNetExample.Delete(11);
-////adoDoNetExample.Edit(11);
+//adoDoNetExample.Edit(1);
 ////adoDoNetExample.Edit(1);
 
 //Dapper (CRUD)
-DapperExample dapperExample = new DapperExample();
-dapperExample.Run();
+//DapperExample dapperExample = new DapperExample();
+//dapperExample.Run();
+
+//EFCore (CRUD)
+EFCoreExample eFCoreExample = new EFCoreExample();
+eFCoreExample.Run();
+
 Console.ReadLine();

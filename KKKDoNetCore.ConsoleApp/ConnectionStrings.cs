@@ -14,6 +14,7 @@ internal static class ConnectionStrings
         DataSource = ".",
         InitialCatalog= "KKKDoNetCore",
         UserID="sa",
-        Password="sa@123"
+        Password="sa@123",
+        TrustServerCertificate=true,
     };
 }
