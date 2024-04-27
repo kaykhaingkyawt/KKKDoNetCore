@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using KKKDoNetCore.ConsoleApp.Dtos;
+using KKKDoNetCore.ConsoleApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +10,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KKKDoNetCore.ConsoleApp;
+namespace KKKDoNetCore.ConsoleApp.DapperExamples;
 
 internal class DapperExample
 {
@@ -27,7 +29,7 @@ internal class DapperExample
         using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
         List<BlogDto> lst = db.Query<BlogDto>("select * from tbl_blog").ToList();
 
-        foreach(var item in lst)
+        foreach (var item in lst)
         {
             Console.WriteLine(item.BlogId);
             Console.WriteLine(item.BlogTitle);
@@ -39,9 +41,9 @@ internal class DapperExample
     //Edit
     private void Edit(int id)
     {
-       using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-       var item= db.Query("select * from tbl_blog where BlogId=@BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
-        if(item is null)
+        using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+        var item = db.Query("select * from tbl_blog where BlogId=@BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
+        if (item is null)
         {
             Console.WriteLine("Data not found.");
             return;
@@ -52,7 +54,7 @@ internal class DapperExample
         Console.WriteLine(item.BlogContent);
     }
     //Create
-    private void Create(string title,string author,string content)
+    private void Create(string title, string author, string content)
     {
         var item = new BlogDto
         {
@@ -69,17 +71,17 @@ internal class DapperExample
            ,@BlogAuthor
            ,@BlogContent)";
         using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-        int result= db.Execute(query, item);
+        int result = db.Execute(query, item);
 
         string message = result > 0 ? "Saving Successful." : "Saving Failed.";
         Console.WriteLine(message);
     }
     //Update
-    private void Update( int id,string title, string author, string content)
+    private void Update(int id, string title, string author, string content)
     {
         var item = new BlogDto
         {
-            BlogId=id,
+            BlogId = id,
             BlogTitle = title,
             BlogAuthor = author,
             BlogContent = content

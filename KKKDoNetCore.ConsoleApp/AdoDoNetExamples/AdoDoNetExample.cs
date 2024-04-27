@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Reflection.Metadata;
 
-namespace KKKDoNetCore.ConsoleApp
+namespace KKKDoNetCore.ConsoleApp.AdoDoNetExamples
 {
     internal class AdoDoNetExample
     {
@@ -21,7 +21,7 @@ namespace KKKDoNetCore.ConsoleApp
         };
 
         //Read
-     public void Read()
+        public void Read()
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
 
@@ -69,21 +69,21 @@ namespace KKKDoNetCore.ConsoleApp
             connection.Close();
             Console.WriteLine("Connection Close.");
 
-            if(dt.Rows.Count == 0)
+            if (dt.Rows.Count == 0)
             {
                 Console.WriteLine("Data not found.");
                 return;
             }
 
             DataRow dr = dt.Rows[0];
-                Console.WriteLine("Blog Id => " + dr["BlogId"]);
-                Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
-                Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
-                Console.WriteLine("Blog Content => " + dr["BlogContent"]);
-                Console.WriteLine("--------------------------------------------");  
+            Console.WriteLine("Blog Id => " + dr["BlogId"]);
+            Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
+            Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
+            Console.WriteLine("Blog Content => " + dr["BlogContent"]);
+            Console.WriteLine("--------------------------------------------");
         }
         // Create
-        public void Create(string title,string author,string content)
+        public void Create(string title, string author, string content)
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
 
@@ -100,11 +100,11 @@ namespace KKKDoNetCore.ConsoleApp
            ,@BlogContent)";
             SqlCommand cmd = new SqlCommand(query, connection);
             //Insert Parameter
-            cmd.Parameters.AddWithValue("@BlogTitle",title);
+            cmd.Parameters.AddWithValue("@BlogTitle", title);
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
             cmd.Parameters.AddWithValue("@BlogContent", content);
             //Make Execute
-            int result= cmd.ExecuteNonQuery();
+            int result = cmd.ExecuteNonQuery();
 
             connection.Close();
             Console.WriteLine("Connection Close.");
@@ -114,7 +114,7 @@ namespace KKKDoNetCore.ConsoleApp
         }
 
         // Update
-        public void Update(int id,string title,string author,string content)
+        public void Update(int id, string title, string author, string content)
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
 
