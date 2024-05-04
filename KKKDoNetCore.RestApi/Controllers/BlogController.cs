@@ -25,14 +25,15 @@ public class BlogController : ControllerBase
         return Ok(lst);
     }
 
+
     [HttpGet("{id}")]
     public IActionResult Edit(int id)
     {
        var item= _context.Blogs.FirstOrDefault(x => x.BlogId == id);
-        if(item is null)
+       if(item is null)
         {
-            return NotFound("NO Data Found.");
-        }
+           return NotFound("NO Data Found.");
+       }
         return Ok(item);
     }
     [HttpPost]
